@@ -1,0 +1,14 @@
+{
+    "roles": [
+        {
+            "name": "superadmin",
+            "assets": {
+                "global": [
+                    "read",
+                    "write",
+                    "delete"
+                ]
+            }
+        }
+    ]
+}

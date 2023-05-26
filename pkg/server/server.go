@@ -73,7 +73,7 @@ func RolesAssetsHandler(responseWriter http.ResponseWriter, request *http.Reques
 	json.NewEncoder(responseWriter).Encode(assets)
 }
 
-func EditSchemaHandler(responseWriter http.ResponseWriter, request *http.Request) {
+func RolesSchemaHandler(responseWriter http.ResponseWriter, request *http.Request) {
 	if request.Method == "GET" {
 		roles, err := jsonparser.ReadRoles()
 		if err != nil {
@@ -89,6 +89,30 @@ func EditSchemaHandler(responseWriter http.ResponseWriter, request *http.Request
 		defer request.Body.Close()
 	
 		err = jsonparser.WriteRoles(roles)
+		if err != nil {
+			http.Error(responseWriter, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		responseWriter.WriteHeader(http.StatusOK)
+	}
+}
+
+func UsersSchemaHandler(responseWriter http.ResponseWriter, request *http.Request) {
+	if request.Method == "GET" {
+		users, err := jsonparser.ReadUsers()
+		if err != nil {
+			http.Error(responseWriter, err.Error(), http.StatusInternalServerError)
+		}
+		json.NewEncoder(responseWriter).Encode(users)
+	} else if request.Method == "POST" {
+		users, err := io.ReadAll(request.Body)
+		if err != nil {
+			http.Error(responseWriter, err.Error(), http.StatusBadRequest)
+			return
+		}
+		defer request.Body.Close()
+	
+		err = jsonparser.WriteUsers(users)
 		if err != nil {
 			http.Error(responseWriter, err.Error(), http.StatusInternalServerError)
 			return

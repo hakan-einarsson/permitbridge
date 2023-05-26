@@ -13,7 +13,8 @@ func main() {
 	http.HandleFunc("/authorize/permissions", server.AssetsPermissionsHandler)
 	http.HandleFunc("/authorize/assets", server.RolesAssetsHandler)
 	// http.HandleFunc("/authorize/rolse", server.AuthorizeHandler)
-	http.HandleFunc("/schema", server.EditSchemaHandler)
+	http.HandleFunc("/schema/roles", server.RolesSchemaHandler)
+	http.HandleFunc("/schema/users", server.UsersSchemaHandler)
 	var port = "8000"
 	fmt.Println("Listening on port " + port)
 	http.ListenAndServe(":"+port, nil)

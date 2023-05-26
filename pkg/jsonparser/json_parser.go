@@ -20,10 +20,19 @@ type RolesWrapper struct {
 	Roles []Role `json:"roles"`
 }
 
+type User struct {
+	Id	string
+	Roles	[]string
+}
+
+type UsersWrapper struct {
+	Users []User `json:"users"`
+}
+
 // ReadRoles reads roles from the json file.
 func ReadRoles() ([]Role, error) {
 	// Open the file.
-	file, err := os.Open("pkg/schema/schema.json")
+	file, err := os.Open("pkg/schema/roles.json")
 	if err != nil {
 		return nil, err
 	}
@@ -38,6 +47,23 @@ func ReadRoles() ([]Role, error) {
 
 	return wrapper.Roles, nil
 }
+
+func ReadUsers()([]User, error) {
+	file, err := os.Open("pkg/schema/users.json")
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+	data, err := io.ReadAll(file)
+	var wrapper UsersWrapper
+	err = json.Unmarshal(data, &wrapper)
+	if err != nil {
+		return nil, err
+	}
+
+	return wrapper.Users, nil
+}
+
 
 // WriteRoles writes roles to the JSON file.
 func WriteRoles(roles []byte) error {
@@ -54,6 +80,22 @@ func WriteRoles(roles []byte) error {
         return err
     }
     return nil
+}
+
+func WriteUsers(users []byte) error {
+	// First unmarshal the users to validate the input
+	var wrapper UsersWrapper
+	err := json.Unmarshal(users, &wrapper)
+	if err != nil {
+		return err
+	}
+
+	// Write the JSON.
+	err = os.WriteFile("pkg/schema/users.json", users, 0644)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 

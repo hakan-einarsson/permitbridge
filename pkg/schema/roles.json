@@ -1,14 +1,39 @@
-{
-    "roles": [
-        {
-            "name": "superadmin",
-            "assets": {
-                "global": [
-                    "read",
-                    "write",
-                    "delete"
-                ]
-            }
+[
+    {
+        "name": "admin",
+        "assets": {
+            "global": [
+                "read",
+                "write",
+                "delete"
+            ]
         }
-    ]
-}
+    },
+    {
+        "name": "user",
+        "assets": {
+            "global": [
+                "read"
+            ]
+        }
+    },
+    {
+        "name": "admin",
+        "assets": {
+            "global": [
+                "read",
+                "write"
+            ]
+        }
+    },
+    {
+        "name": "author",
+        "assets": {
+            "posts": [
+                "read",
+                "write",
+                "delete"
+            ]
+        }
+    }
+]

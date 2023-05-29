@@ -1,22 +1,27 @@
-{
-    "users": [
-        {
-            "id": "1",
-            "roles": [
-                "superadmin"
-            ]
-        },
-        {
-            "id": "2",
-            "roles": [
-                "admin"
-            ]
-        },
-        {
-            "id": "3",
-            "roles": [
-                "user"
-            ]
-        }
-    ]
-}
+[
+    {
+        "id": "5",
+        "roles": [
+            "author",
+            "user"
+        ]
+    },
+    {
+        "id": "1",
+        "roles": [
+            "superadmin"
+        ]
+    },
+    {
+        "id": "2",
+        "roles": [
+            "admin"
+        ]
+    },
+    {
+        "id": "3",
+        "roles": [
+            "user"
+        ]
+    }
+]

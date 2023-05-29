@@ -10,9 +10,9 @@ import (
 func main() {
 	http.HandleFunc("/", server.IndexHandler)
 	http.HandleFunc("/authorize", server.AuthorizeHandler)
-	http.HandleFunc("/authorize/permissions", server.AssetsPermissionsHandler)
-	http.HandleFunc("/authorize/assets", server.RolesAssetsHandler)
-	// http.HandleFunc("/authorize/rolse", server.AuthorizeHandler)
+	http.HandleFunc("/roles", server.RolesHandler)
+	http.HandleFunc("/users", server.UsersHandler)
+	http.HandleFunc("/assets", server.AssetsHandler)
 	http.HandleFunc("/schema/roles", server.RolesSchemaHandler)
 	http.HandleFunc("/schema/users", server.UsersSchemaHandler)
 	var port = "8000"

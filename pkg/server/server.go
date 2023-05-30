@@ -2,6 +2,7 @@ package server
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 
@@ -17,7 +18,9 @@ type AuthorizeData struct {
 }
 
 func IndexHandler(responseWriter http.ResponseWriter, request *http.Request) {
-	http.ServeFile(responseWriter, request, "views/index.html")
+	//log request
+	fmt.Println(request.Method, request.URL.Path, request.RemoteAddr, request.UserAgent())
+	http.ServeFile(responseWriter, request, "./views/index.html")
 }
 
 func AuthorizeHandler(responseWriter http.ResponseWriter, request *http.Request){

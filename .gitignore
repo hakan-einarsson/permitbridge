@@ -1,2 +1,5 @@
 docker-compose.yml
 go.sum
+
+pkg/schema/roles.json
+pkg/schema/users.json
